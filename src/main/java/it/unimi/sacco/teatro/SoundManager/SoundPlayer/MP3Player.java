@@ -3,7 +3,9 @@ package it.unimi.sacco.teatro.SoundManager.SoundPlayer;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.net.URLDecoder;
 import java.util.concurrent.ExecutorService;
 
 import javazoom.jl.decoder.JavaLayerException;
@@ -109,9 +111,22 @@ public class MP3Player implements Runnable
 
 	private String getFilname(URL url)
 	{
-		String pezzi[] = url.toString().split("/");
-		int index = pezzi.length - 1;
-		return pezzi[index];
+
+		try
+		{
+			String pezzi[] = URLDecoder.decode(url.toString(), "UTF-8").split("/");
+			int index = pezzi.length - 1;
+			String fileName = pezzi[index];
+			return fileName.substring(0, fileName.lastIndexOf('.'));
+		}
+		catch (UnsupportedEncodingException e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+		
+		
+		
 	}
 
 	private String			soundName;
