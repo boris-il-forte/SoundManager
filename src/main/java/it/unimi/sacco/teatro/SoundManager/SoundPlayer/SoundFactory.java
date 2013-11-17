@@ -49,12 +49,11 @@ public class SoundFactory
 	{
 		try
 		{
-			String[] entries = ListFolder.list(this.subFolder);
+			String[] entries = ListFolder.listAlphabetically(this.subFolder);
 			this.resources.addAll(Arrays.asList(entries));
 		}
 		catch (URISyntaxException | IOException e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

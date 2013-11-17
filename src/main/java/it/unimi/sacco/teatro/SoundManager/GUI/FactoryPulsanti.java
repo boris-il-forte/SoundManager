@@ -3,7 +3,7 @@ package it.unimi.sacco.teatro.SoundManager.GUI;
 import it.unimi.sacco.teatro.SoundManager.SoundPlayer.MP3Player;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -13,7 +13,7 @@ public class FactoryPulsanti
 {
 	public FactoryPulsanti()
 	{
-		this.mappaPulsanti = new HashMap<String, List<JPulsanteSuono>>();
+		this.mappaPulsanti = new LinkedHashMap<String, List<JPulsanteSuono>>();
 		
 	}
 	public void addPlayer(List<MP3Player> listaPlayer, String nomeLista)

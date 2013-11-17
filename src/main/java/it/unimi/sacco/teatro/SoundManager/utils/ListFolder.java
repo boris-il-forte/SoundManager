@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLDecoder;
+import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.Set;
@@ -84,6 +85,13 @@ public final class ListFolder
 		}
 
 		throw new UnsupportedOperationException("Cannot list files for URL " + dirURL);
+	}
+	
+	public static String[] listAlphabetically(String path) throws URISyntaxException, IOException
+	{
+		String list[] = list(path);
+		Arrays.sort(list);
+		return list;
 	}
 
 	private ListFolder()

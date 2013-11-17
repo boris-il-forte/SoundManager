@@ -26,7 +26,8 @@ public class MP3Player implements Runnable
 	 * @throws FileNotFoundException
 	 * @throws JavaLayerException
 	 */
-	MP3Player(URL url, ExecutorService executor) throws FileNotFoundException, JavaLayerException
+	MP3Player(URL url, ExecutorService executor) throws FileNotFoundException,
+			JavaLayerException
 	{
 		this.path = url;
 		this.openStream();
@@ -106,7 +107,7 @@ public class MP3Player implements Runnable
 		{
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	private String getFilname(URL url)
@@ -114,7 +115,8 @@ public class MP3Player implements Runnable
 
 		try
 		{
-			String pezzi[] = URLDecoder.decode(url.toString(), "UTF-8").split("/");
+			String pezzi[] = URLDecoder.decode(url.toString(), "UTF-8").split(
+					"/");
 			int index = pezzi.length - 1;
 			String fileName = pezzi[index];
 			return fileName.substring(0, fileName.lastIndexOf('.'));
@@ -124,19 +126,17 @@ public class MP3Player implements Runnable
 			e.printStackTrace();
 			return null;
 		}
-		
-		
-		
+
 	}
 
-	private String			soundName;
+	private String soundName;
 
-	private Player			player;
+	private Player player;
 
-	private InputStream		file;
+	private InputStream file;
 
-	private URL			path;
+	private URL path;
 
-	private ExecutorService	executor;
+	private ExecutorService executor;
 
 }
