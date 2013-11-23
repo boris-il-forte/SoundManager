@@ -24,7 +24,7 @@ public class SoundFactory
 		this.aggiungiPlayer();
 		this.creaPlayers();
 	}
-	
+
 	public String getNomeLista()
 	{
 		return this.subFolder;
@@ -64,12 +64,15 @@ public class SoundFactory
 		this.players = new ArrayList<MP3Player>();
 		for (String resource : this.resources)
 		{
-			URL resourcePath = this.getClass().getResource(
-					"/" + this.subFolder + "/" + resource);
-			System.out.println(resourcePath);
-			MP3Player player = this.creaPlayer(resourcePath, this.executor);
-			if (player != null)
-				this.players.add(player);
+			if (resource.contains(".mp3"))
+			{
+				URL resourcePath = this.getClass().getResource(
+						"/" + this.subFolder + "/" + resource);
+				System.out.println(resourcePath);
+				MP3Player player = this.creaPlayer(resourcePath, this.executor);
+				if (player != null)
+					this.players.add(player);
+			}
 		}
 	}
 
