@@ -4,11 +4,11 @@ import it.unimi.sacco.teatro.SoundManager.Exceptions.NoMorePlayersException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 
@@ -52,6 +52,7 @@ public class SoundFactory
 		File subFolderDir = new File(this.soundDir + "/" + this.subFolder);
 		String[] entries = subFolderDir.list();
 		this.resources.addAll(Arrays.asList(entries));
+		Collections.sort(this.resources);
 	}
 
 	private void creaPlayers() throws MalformedURLException
