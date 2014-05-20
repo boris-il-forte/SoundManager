@@ -1,11 +1,11 @@
 package it.unimi.sacco.teatro.SoundManager.SoundPlayer;
 
 import it.unimi.sacco.teatro.SoundManager.Exceptions.NoMorePlayersException;
-import it.unimi.sacco.teatro.SoundManager.utils.ListFolder;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.URISyntaxException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,8 +16,10 @@ import javazoom.jl.decoder.JavaLayerException;
 
 public class SoundFactory
 {
-	public SoundFactory(ExecutorService executor, String subfolder)
+	public SoundFactory(ExecutorService executor, String soundDir, String subfolder)
+			throws MalformedURLException
 	{
+		this.soundDir = soundDir;
 		this.subFolder = subfolder;
 		this.resources = new ArrayList<String>();
 		this.executor = executor;
@@ -47,28 +49,19 @@ public class SoundFactory
 
 	private void aggiungiPlayer()
 	{
-		try
-		{
-			String[] entries = ListFolder.listAlphabetically(this.subFolder);
-			this.resources.addAll(Arrays.asList(entries));
-		}
-		catch (URISyntaxException | IOException e)
-		{
-			e.printStackTrace();
-		}
-
+		File subFolderDir = new File(this.soundDir + "/" + this.subFolder);
+		String[] entries = subFolderDir.list();
+		this.resources.addAll(Arrays.asList(entries));
 	}
 
-	private void creaPlayers()
+	private void creaPlayers() throws MalformedURLException
 	{
 		this.players = new ArrayList<MP3Player>();
 		for (String resource : this.resources)
 		{
-			if (resource.contains(".mp3"))
+			if (resource != null && resource.contains(".mp3"))
 			{
-				URL resourcePath = this.getClass().getResource(
-						"/" + this.subFolder + "/" + resource);
-				System.out.println(resourcePath);
+				URL resourcePath = new File(this.subFolder + "/" + resource).toURI().toURL();
 				MP3Player player = this.creaPlayer(resourcePath, this.executor);
 				if (player != null)
 					this.players.add(player);
@@ -101,4 +94,6 @@ public class SoundFactory
 	private ExecutorService executor;
 
 	private String subFolder;
+	
+	private String soundDir;
 }

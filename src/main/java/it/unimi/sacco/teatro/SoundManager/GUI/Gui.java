@@ -65,7 +65,7 @@ public class Gui implements Runnable
 
 	private void creaFinestra()
 	{
-		this.finestra = new JFrame("SoundManager 1.0");
+		this.finestra = new JFrame("SoundManager 2.0");
 		Container panel = this.finestra.getContentPane();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 		this.finestra.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
