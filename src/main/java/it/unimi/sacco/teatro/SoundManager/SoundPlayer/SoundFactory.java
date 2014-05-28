@@ -16,8 +16,8 @@ import javazoom.jl.decoder.JavaLayerException;
 
 public class SoundFactory
 {
-	public SoundFactory(ExecutorService executor, String soundDir, String subfolder)
-			throws MalformedURLException
+	public SoundFactory(ExecutorService executor, String soundDir,
+			String subfolder) throws MalformedURLException
 	{
 		this.soundDir = soundDir;
 		this.subFolder = subfolder;
@@ -62,7 +62,8 @@ public class SoundFactory
 		{
 			if (resource != null && resource.contains(".mp3"))
 			{
-				URL resourcePath = new File(this.subFolder + "/" + resource).toURI().toURL();
+				URL resourcePath = new File(this.soundDir + "/"
+						+ this.subFolder + "/" + resource).toURI().toURL();
 				MP3Player player = this.creaPlayer(resourcePath, this.executor);
 				if (player != null)
 					this.players.add(player);
@@ -95,6 +96,6 @@ public class SoundFactory
 	private ExecutorService executor;
 
 	private String subFolder;
-	
+
 	private String soundDir;
 }

@@ -40,6 +40,7 @@ public class Soundmanager
 		try
 		{
 			String soundDir = preferenceManager.getPreference();
+			System.out.println(soundDir);
 			musicFactory = new SoundFactory(executor, soundDir, "musica");
 			SoundFactory noiseFactory = new SoundFactory(executor, soundDir, "rumori");
 			FactoryPulsanti factory = new FactoryPulsanti();
